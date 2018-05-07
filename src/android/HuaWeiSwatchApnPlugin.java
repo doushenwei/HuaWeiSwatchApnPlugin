@@ -1,4 +1,4 @@
-package cordova-plugin-huawei-swatchapn;
+package cordova.plugin.huaweiswatchapn;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
