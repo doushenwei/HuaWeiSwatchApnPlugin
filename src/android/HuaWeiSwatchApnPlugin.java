@@ -2,6 +2,8 @@ package cordova.plugin.huaweiswatchapn;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
+
+import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Context;
 import android.app.Activity;
@@ -12,8 +14,15 @@ import org.json.JSONObject;
 
 import android.app.admin.DevicePolicyManager;
 import com.huawei.android.app.admin.DeviceNetworkManager;
+import com.huawei.mdm.sample.SampleDeviceReceiver;
+import com.huawei.mdm.sample.SampleEula;
 
 import android.content.Context;
+import android.telephony.TelephonyManager;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * This class echoes a string called from JavaScript.
@@ -22,15 +31,14 @@ public class HuaWeiSwatchApnPlugin extends CordovaPlugin {
 
     private DevicePolicyManager mDevicePolicyManager = null;
     private ComponentName mAdminName = null;
-    final Activity context = this;
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        context = this.cordova.getActivity().getApplicationContext();
+        final Activity context = this.cordova.getActivity();
         mAdminName = new ComponentName(context, SampleDeviceReceiver.class);
         mDevicePolicyManager = (DevicePolicyManager)
                 context.getSystemService(Context.DEVICE_POLICY_SERVICE);
-        new SampleEula(context, mDevicePolicyManager, mAdminName).show();
+        new com.huawei.mdm.sample.SampleEula(context, mDevicePolicyManager, mAdminName).show();
 
         if(action.equals("setApn")){
             if(isActiveMe()) {
