@@ -14,8 +14,6 @@ import org.json.JSONObject;
 
 import android.app.admin.DevicePolicyManager;
 import com.huawei.android.app.admin.DeviceNetworkManager;
-import com.huawei.mdm.sample.SampleDeviceReceiver;
-import com.huawei.mdm.sample.SampleEula;
 
 import android.content.Context;
 import android.telephony.TelephonyManager;
@@ -38,7 +36,7 @@ public class HuaWeiSwatchApnPlugin extends CordovaPlugin {
         mAdminName = new ComponentName(context, SampleDeviceReceiver.class);
         mDevicePolicyManager = (DevicePolicyManager)
                 context.getSystemService(Context.DEVICE_POLICY_SERVICE);
-        new com.huawei.mdm.sample.SampleEula(context, mDevicePolicyManager, mAdminName).show();
+        new SampleEula(context, mDevicePolicyManager, mAdminName).show();
 
         if(action.equals("setApn")){
             if(isActiveMe()) {
