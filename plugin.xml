@@ -18,8 +18,9 @@
 		<source-file src="src/android/com/huawei/mdm/sample/SampleMainActivity.java" target-dir="src/cordova.plugin.huaweiswatchapn" />
 		<source-file src="src/android/com/huawei/mdm/sample/Utils.java" target-dir="src/cordova.plugin.huaweiswatchapn" />
 		<source-file src="src/android/com/huawei/mdm/sample/SharedPreferenceUtil.java" target-dir="src/cordova.plugin.huaweiswatchapn" />
+	<!--	
 		<source-file src="src/android/huawei_permission_statement.html" target-dir="src/cordova.plugin.huaweiswatchapn" />
 		<source-file src="src/android/huawei_software_license.html" target-dir="src/cordova.plugin.huaweiswatchapn" />
-		<source-file src="src/android/lib/hwMdm.jar target-dir="libs" />
+		<source-file src="src/android/lib/hwMdm.jar target-dir="libs" />-->
 	</platform>
 </plugin>
