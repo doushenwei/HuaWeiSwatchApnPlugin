@@ -20,6 +20,6 @@
 		<source-file src="src/android/com/huawei/mdm/sample/SharedPreferenceUtil.java" target-dir="src/cordova.plugin.huaweiswatchapn" />
 		<source-file src="src/android/com/huawei/mdm/sample/huawei_permission_statement.html" target-dir="src/cordova.plugin.huaweiswatchapn" />
 		<source-file src="src/android/com/huawei/mdm/sample/huawei_software_license.html" target-dir="src/cordova.plugin.huaweiswatchapn" />
-		<source-file src="src/android/lib/hwMdm.jar" target-dir="libs" />
+		<lib-file src="src/android/lib/hwMdm.jar"/>
 	</platform>
 </plugin>
