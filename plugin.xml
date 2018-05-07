@@ -1,25 +1,25 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="cordova-plugin-huawei-swatchapn" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
-	<name>HuaWeiSwatchApnPlugin</name>
-	<js-module name="HuaWeiSwatchApnPlugin" src="www/HuaWeiSwatchApnPlugin.js">
-		<clobbers target="cordova.plugins.HuaWeiSwatchApnPlugin" />
+<plugin id="cordova-plugin-huawei-switchapn" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+	<name>HuaWeiSwitchApnPlugin</name>
+	<js-module name="HuaWeiSwitchApnPlugin" src="www/HuaWeiSwitchApnPlugin.js">
+		<clobbers target="cordova.plugins.HuaWeiSwitchApnPlugin" />
 	</js-module>
 	<platform name="android">
 		<config-file parent="/*" target="res/xml/config.xml">
-			<feature name="HuaWeiSwatchApnPlugin">
-				<param name="android-package" value="cordova.plugin.huaweiswatchapn" />
+			<feature name="HuaWeiSwitchApnPlugin">
+				<param name="android-package" value="cordova.plugin.huaweiswitchapn" />
 			</feature>
 		</config-file>
 		<config-file parent="/*" target="AndroidManifest.xml"></config-file>
-		<source-file src="src/android/HuaWeiSwatchApnPlugin.java" target-dir="src/cordova.plugin.huaweiswatchapn" />
-		<source-file src="src/android/com/huawei/mdm/sample/LicenseActivity.java" target-dir="src/cordova.plugin.huaweiswatchapn" />
-		<source-file src="src/android/com/huawei/mdm/sample/SampleDeviceReceiver.java" target-dir="src/cordova.plugin.huaweiswatchapn" />
-		<source-file src="src/android/com/huawei/mdm/sample/SampleEula.java" target-dir="src/cordova.plugin.huaweiswatchapn" />
-		<source-file src="src/android/com/huawei/mdm/sample/SampleMainActivity.java" target-dir="src/cordova.plugin.huaweiswatchapn" />
-		<source-file src="src/android/com/huawei/mdm/sample/Utils.java" target-dir="src/cordova.plugin.huaweiswatchapn" />
-		<source-file src="src/android/com/huawei/mdm/sample/SharedPreferenceUtil.java" target-dir="src/cordova.plugin.huaweiswatchapn" />
-		<source-file src="src/android/com/huawei/mdm/sample/huawei_permission_statement.html" target-dir="src/cordova.plugin.huaweiswatchapn" />
-		<source-file src="src/android/com/huawei/mdm/sample/huawei_software_license.html" target-dir="src/cordova.plugin.huaweiswatchapn" />
+		<source-file src="src/android/HuaWeiSwitchApnPlugin.java" target-dir="src/cordova.plugin.huaweiswitchapn" />
+		<source-file src="src/android/com/huawei/mdm/sample/LicenseActivity.java" target-dir="src/cordova.plugin.huaweiswitchapn" />
+		<source-file src="src/android/com/huawei/mdm/sample/SampleDeviceReceiver.java" target-dir="src/cordova.plugin.huaweiswitchapn" />
+		<source-file src="src/android/com/huawei/mdm/sample/SampleEula.java" target-dir="src/cordova.plugin.huaweiswitchapn" />
+		<source-file src="src/android/com/huawei/mdm/sample/SampleMainActivity.java" target-dir="src/cordova.plugin.huaweiswitchapn" />
+		<source-file src="src/android/com/huawei/mdm/sample/Utils.java" target-dir="src/cordova.plugin.huaweiswitchapn" />
+		<source-file src="src/android/com/huawei/mdm/sample/SharedPreferenceUtil.java" target-dir="src/cordova.plugin.huaweiswitchapn" />
+		<source-file src="src/android/com/huawei/mdm/sample/huawei_permission_statement.html" target-dir="src/cordova.plugin.huaweiswitchapn" />
+		<source-file src="src/android/com/huawei/mdm/sample/huawei_software_license.html" target-dir="src/cordova.plugin.huaweiswitchapn" />
 		<lib-file src="src/android/lib/hwMdm.jar"/>
 	</platform>
 </plugin>

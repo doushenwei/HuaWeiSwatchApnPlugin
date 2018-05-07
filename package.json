@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/doushenwei/HuaWeiSwatchApnPlugin.git"
+    "url": "git+https://github.com/doushenwei/HuaWeiSwitchApnPlugin.git"
   },
   "keywords": [
     "switchApn"
@@ -16,7 +16,7 @@
   "author": "dousw",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/doushenwei/HuaWeiSwatchApnPlugin/issues"
+    "url": "https://github.com/doushenwei/HuaWeiSwitchApnPlugin/issues"
   },
-  "homepage": "https://github.com/doushenwei/HuaWeiSwatchApnPlugin#readme"
+  "homepage": "https://github.com/doushenwei/HuaWeiSwitchApnPlugin#readme"
 }
