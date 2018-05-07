@@ -1,5 +1,5 @@
 /*
- * IMPORTANT:  This Huawei software is supplied to you by Huawei Technologies Co., Ltd. 
+ * IMPORTANT:  This Huawei software is supplied to you by Huawei Technologies Co., Ltd.
  * ("Huawei") in consideration of your agreement to the following
  * terms, and your use, copy, installation, modification or redistribution of
  * this Huawei software constitutes acceptance of these terms.  If you do
@@ -41,10 +41,11 @@
  * Huawei and other Huawei trademarks are trademarks of Huawei Technologies Co., Ltd.
  * All other trademarks and trade names mentioned in this document are the property of their respective holders.
  */
-package com.huawei.mdm.sample;
+package cordova.plugin.huaweiswatchapn;
 
 import android.app.Activity;
 import android.app.admin.DevicePolicyManager;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -55,8 +56,8 @@ import android.content.Context;
 import android.content.ComponentName;
 import android.content.Intent;
 
+import com.chinavvv.jwtoa.R;
 import com.huawei.android.app.admin.DeviceRestrictionManager;
-import com.huawei.mdm.sample.SampleDeviceReceiver;
 
 public class SampleMainActivity extends Activity {
     private DeviceRestrictionManager mDeviceRestrictionManager = null;
@@ -69,7 +70,7 @@ public class SampleMainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_layout);
+        setContentView(getRESid("R.layout","main_layout"));
 
         mDevicePolicyManager = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
         mDeviceRestrictionManager = new DeviceRestrictionManager();
@@ -81,14 +82,14 @@ public class SampleMainActivity extends Activity {
     }
 
     private void initSampleView() {
-        mStatusText = (TextView) findViewById(R.id.wifiStateTxt);
-        wifiDisableBtn = (Button) findViewById(R.id.disableWifi);
-        wifiEnableBtn = (Button) findViewById(R.id.enableWifi);
+        mStatusText = (TextView) findViewById(getRESid("R.id","wifiStateTxt"));
+        wifiDisableBtn = (Button) findViewById(getRESid("R.id","disableWifi"));
+        wifiEnableBtn = (Button) findViewById(getRESid("R.id","enableWifi"));
 
         wifiDisableBtn.setOnClickListener(new SampleOnClickListener());
         wifiEnableBtn.setOnClickListener(new SampleOnClickListener());
     }
-    
+
 
     private void updateState() {
         if(!isActiveMe()) {
@@ -104,9 +105,9 @@ public class SampleMainActivity extends Activity {
                     Toast.LENGTH_SHORT).show();
         }
         if (isWifiDisabled) {
-            mStatusText.setText(R.string.state_restricted);
+            mStatusText.setText(getRESid("R.string","state_restricted"));
         } else {
-            mStatusText.setText(getString(R.string.state_nomal));
+            mStatusText.setText(getString(getRESid("R.string","state_nomal")));
         }
     }
 
@@ -115,7 +116,7 @@ public class SampleMainActivity extends Activity {
         updateState();
         super.onActivityResult(requestCode, resultCode, data);
     }
-    
+
     private boolean isActiveMe() {
         if(mDevicePolicyManager == null || !mDevicePolicyManager.isAdminActive(mAdminName)) {
             return false;
@@ -124,18 +125,24 @@ public class SampleMainActivity extends Activity {
         }
     }
 
+    public int getRESid(String resourceName, String type) {
+      Resources resources = getResources();
+      return resources.getIdentifier(resourceName, type, getPackageName());
+    }
+
+
     private class SampleOnClickListener implements OnClickListener {
 
         @Override
         public void onClick(View v) {
             boolean disable = false;
-            
-            if (v.getId() == R.id.disableWifi) {
-                disable = true;
-            } else if (v.getId() == R.id.enableWifi) {
-                disable = false;
+
+            if (v.getId() == getRESid("R.id","disableWifi")) {
+              disable = true;
+            } else if (v.getId() == getRESid("R.id","enableWifi")) {
+              disable = false;
             }
-            
+
             try {
                 if (mDeviceRestrictionManager != null) {
                     mDeviceRestrictionManager.setWifiDisabled(mAdminName, disable);
