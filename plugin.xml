@@ -7,11 +7,19 @@
 	<platform name="android">
 		<config-file parent="/*" target="res/xml/config.xml">
 			<feature name="HuaWeiSwatchApnPlugin">
-				<param name="android-package" value="cordova-plugin-huawei-swatchapn.HuaWeiSwatchApnPlugin" />
+				<param name="android-package" value="cordova.plugin.huaweiswatchapn" />
 			</feature>
 		</config-file>
 		<config-file parent="/*" target="AndroidManifest.xml"></config-file>
-		<source-file src="src/android/HuaWeiSwatchApnPlugin.java" target-dir="src/cordova-plugin-huawei-swatchapn/HuaWeiSwatchApnPlugin" />
-		<lib-file src="src/android/lib/hwMdm.jar"/>
+		<source-file src="src/android/HuaWeiSwatchApnPlugin.java" target-dir="src/cordova.plugin.huaweiswatchapn" />
+		<source-file src="src/android/com/huawei/mdm/sample/LicenseActivity.java" target-dir="src/cordova.plugin.huaweiswatchapn" />
+		<source-file src="src/android/com/huawei/mdm/sample/SampleDeviceReceiver.java" target-dir="src/cordova.plugin.huaweiswatchapn" />
+		<source-file src="src/android/com/huawei/mdm/sample/SampleEula.java" target-dir="src/cordova.plugin.huaweiswatchapn" />
+		<source-file src="src/android/com/huawei/mdm/sample/SampleMainActivity.java" target-dir="src/cordova.plugin.huaweiswatchapn" />
+		<source-file src="src/android/com/huawei/mdm/sample/Utils.java" target-dir="src/cordova.plugin.huaweiswatchapn" />
+		<source-file src="src/android/com/huawei/mdm/sample/SharedPreferenceUtil.java" target-dir="src/cordova.plugin.huaweiswatchapn" />
+		<source-file src="huawei_permission_statement.html" target-dir="src/cordova.plugin.huaweiswatchapn" />
+		<source-file src="huawei_software_license.html" target-dir="src/cordova.plugin.huaweiswatchapn" />
+		<source-file src="src/android/lib/hwMdm.jar target-dir="libs" />
 	</platform>
 </plugin>
