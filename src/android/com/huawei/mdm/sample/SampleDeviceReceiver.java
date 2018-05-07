@@ -1,5 +1,5 @@
 /*
- * IMPORTANT:  This Huawei software is supplied to you by Huawei Technologies Co., Ltd. 
+ * IMPORTANT:  This Huawei software is supplied to you by Huawei Technologies Co., Ltd.
  * ("Huawei") in consideration of your agreement to the following
  * terms, and your use, copy, installation, modification or redistribution of
  * this Huawei software constitutes acceptance of these terms.  If you do
@@ -8,7 +8,7 @@
 
  * In consideration of your agreement to abide by the following terms, and
  * subject to these terms, Huawei grants you a personal, non-exclusive
- * license, under Huawei's copyrights in this original Huawei software(hereinafter referred as ¡°Huawei Software¡±), to use, reproduce, modify and redistribute the Huawei Software, with or without modifications, in source and/or binary forms;
+ * license, under Huawei's copyrights in this original Huawei software(hereinafter referred as ï¿½ï¿½Huawei Softwareï¿½ï¿½), to use, reproduce, modify and redistribute the Huawei Software, with or without modifications, in source and/or binary forms;
  * provided that if you redistribute the Huawei Software in its entirety and
  * without modifications, you must retain this notice and the following
  * text and disclaimers in all such redistributions of the Huawei Software.
@@ -41,11 +41,13 @@
  * Huawei and other Huawei trademarks are trademarks of Huawei Technologies Co., Ltd.
  * All other trademarks and trade names mentioned in this document are the property of their respective holders.
  */
-package com.huawei.mdm.sample;
+package cordova.plugin.huaweiswatchapn;
 
 import android.app.admin.DeviceAdminReceiver;
 import android.content.Context;
 import android.content.Intent;
+
+import com.chinavvv.jwtoa.R;
 
 public class SampleDeviceReceiver extends DeviceAdminReceiver {
 
