@@ -1,5 +1,5 @@
 /*
- * IMPORTANT:  This Huawei software is supplied to you by Huawei Technologies Co., Ltd. 
+ * IMPORTANT:  This Huawei software is supplied to you by Huawei Technologies Co., Ltd.
  * ("Huawei") in consideration of your agreement to the following
  * terms, and your use, copy, installation, modification or redistribution of
  * this Huawei software constitutes acceptance of these terms.  If you do
@@ -8,7 +8,7 @@
 
  * In consideration of your agreement to abide by the following terms, and
  * subject to these terms, Huawei grants you a personal, non-exclusive
- * license, under Huawei's copyrights in this original Huawei software(hereinafter referred as ¡°Huawei Software¡±), to use, reproduce, modify and redistribute the Huawei Software, with or without modifications, in source and/or binary forms;
+ * license, under Huawei's copyrights in this original Huawei software(hereinafter referred as ï¿½ï¿½Huawei Softwareï¿½ï¿½), to use, reproduce, modify and redistribute the Huawei Software, with or without modifications, in source and/or binary forms;
  * provided that if you redistribute the Huawei Software in its entirety and
  * without modifications, you must retain this notice and the following
  * text and disclaimers in all such redistributions of the Huawei Software.
@@ -41,7 +41,7 @@
  * Huawei and other Huawei trademarks are trademarks of Huawei Technologies Co., Ltd.
  * All other trademarks and trade names mentioned in this document are the property of their respective holders.
  */
-package com.huawei.mdm.sample;
+package cordova.plugin.huaweiswatchapn;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -49,6 +49,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import android.content.Context;
+import android.content.res.Resources;
 import android.util.Log;
 
 public class Utils {
@@ -79,7 +80,7 @@ public class Utils {
             boolean readCurrentLine = true;
             // Read each line of the html file, and build a string.
             while ((line = reader.readLine()) != null) {
-                // Don't read the Head tags when CSS styling is not supporeted. 
+                // Don't read the Head tags when CSS styling is not supporeted.
                 if (line.contains("<style")) {
                     readCurrentLine = false;
                 } else if (line.contains("</style")) {
