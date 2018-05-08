@@ -1,4 +1,4 @@
-package cordova.plugin.huaweiswitchapn;
+package cordova.plugin.huaweiswatchapn;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
@@ -25,7 +25,7 @@ import java.util.Map;
 /**
  * This class echoes a string called from JavaScript.
  */
-public class HuaWeiSwitchApnPlugin extends CordovaPlugin {
+public class HuaWeiSwatchApnPlugin extends CordovaPlugin {
 
     private DevicePolicyManager mDevicePolicyManager = null;
     private ComponentName mAdminName = null;
@@ -38,12 +38,16 @@ public class HuaWeiSwitchApnPlugin extends CordovaPlugin {
                 context.getSystemService(Context.DEVICE_POLICY_SERVICE);
         new SampleEula(context, mDevicePolicyManager, mAdminName).show();
 
-        if(action.equals("setApn")){
+        if(action.equals("setApn")){//设置APN
             if(isActiveMe()) {
                 setApn(context);
                 return true;
             }
             return false;
+        }else if(action.equals("setInternet")){//设置互联网
+            if(isActiveMe()) {
+              setInternet(context);
+            }
         }
         return false;
     }
@@ -72,6 +76,29 @@ public class HuaWeiSwitchApnPlugin extends CordovaPlugin {
             return false;
         } else {
             return true;
+        }
+    }
+
+    private void setInternet(Activity context){
+      DeviceNetworkManager myDeviceNetworkManager = new DeviceNetworkManager();
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("mcc","460");
+        // params.put("mnc","01");
+        List<String> apns = myDeviceNetworkManager.queryApn(mAdminName,params);
+        boolean hasApn = false;
+        for(String id : apns){
+            Map<String,String> apn = myDeviceNetworkManager.getApnInfo(mAdminName,id);
+            String apnName = apn.get("apn");
+
+            if(isChinaMobile(context)){
+                if(apnName.indexOf("3gnet") > -1){//联通网络
+                  myDeviceNetworkManager.setPreferApn(mAdminName,id);
+                }
+            }else{
+                if(apnName.indexOf("cmnet") > -1){//移动网络
+                  myDeviceNetworkManager.setPreferApn(mAdminName,id);
+                }
+            }
         }
     }
 
