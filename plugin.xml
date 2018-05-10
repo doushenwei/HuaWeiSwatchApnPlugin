@@ -10,6 +10,10 @@
 				<param name="android-package" value="cordova.plugin.huaweiswitchapn" />
 			</feature>
 		</config-file>
+		
+		<uses-permission android:name="com.huawei.permission.sec.MDM" />
+    		<uses-permission android:name="com.huawei.permission.sec.MDM_APN" />
+		
 		<config-file parent="/*" target="AndroidManifest.xml"></config-file>
 		<source-file src="src/android/HuaWeiSwitchApnPlugin.java" target-dir="src/cordova.plugin.huaweiswitchapn" />
 		<source-file src="src/android/com/huawei/mdm/sample/LicenseActivity.java" target-dir="src/cordova.plugin.huaweiswitchapn" />
