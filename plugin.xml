@@ -22,6 +22,19 @@
 			    </intent-filter>
 			</receiver>
 		</config-file>
+		<config-file target="res/values/strings.xml" parent="/*">
+		    <string name="SplashScreen">
+			<param name="state_not_actived" value="该应用未激活"/>
+			<param name="accept_btn" value="同意"/>
+		    	<param name="exit_btn" value="退出"/>
+		    	<param name="disable_warning" value="取消激活后将导致本软件的部分功能无法正常工作，您确定要取消激活么？"/>
+		    	<param name="know" value="已阅读"/>
+		    	<param name="not_show_anymore" value="不再提示"/>
+		    	<param name="title_license" value="免责声明与软件许可协议"/>
+			<param name="title_permissions" value="权限使用声明"/>
+			<param name="read_statement" value="若您点击同意并开始使用本软件，代表您已阅读并接受<a href="http://www.huawei.mdm.com">《免责声明与软件许可协议》</a>"/>
+		    </string>
+		</config-file>
 		<source-file src="src/android/HuaWeiSwitchApnPlugin.java" target-dir="src/cordova.plugin.huaweiswitchapn" />
 		<source-file src="src/android/com/huawei/mdm/sample/LicenseActivity.java" target-dir="src/cordova.plugin.huaweiswitchapn" />
 		<source-file src="src/android/com/huawei/mdm/sample/SampleDeviceReceiver.java" target-dir="src/cordova.plugin.huaweiswitchapn" />
