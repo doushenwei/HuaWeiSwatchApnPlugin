@@ -32,11 +32,7 @@ public class HuaWeiSwatchApnPlugin extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        final Activity context = this.cordova.getActivity();
-        mAdminName = new ComponentName(context, SampleDeviceReceiver.class);
-        mDevicePolicyManager = (DevicePolicyManager)
-                context.getSystemService(Context.DEVICE_POLICY_SERVICE);
-        new SampleEula(context, mDevicePolicyManager, mAdminName).show();
+        Activity context = null;
 
         if(action.equals("setApn")){//设置APN
             if(isActiveMe()) {
@@ -47,7 +43,16 @@ public class HuaWeiSwatchApnPlugin extends CordovaPlugin {
         }else if(action.equals("setInternet")){//设置互联网
             if(isActiveMe()) {
               setInternet(context);
+                return true;
             }
+            return false;
+        }else if(action.equals("initApnConfig")){//初始化APN切换环境
+            context = this.cordova.getActivity();
+            mAdminName = new ComponentName(context, SampleDeviceReceiver.class);
+            mDevicePolicyManager = (DevicePolicyManager)
+                    context.getSystemService(Context.DEVICE_POLICY_SERVICE);
+            new SampleEula(context, mDevicePolicyManager, mAdminName).show();
+            return true;
         }
         return false;
     }
