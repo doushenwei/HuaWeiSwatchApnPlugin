@@ -45,19 +45,10 @@
 		<source-file src="src/android/com/huawei/mdm/sample/SharedPreferenceUtil.java" target-dir="src/cordova.plugin.huaweiswitchapn" />
 		<source-file src="src/android/com/huawei/mdm/sample/huawei_permission_statement.html" target-dir="src/cordova.plugin.huaweiswitchapn" />
 		<source-file src="src/android/com/huawei/mdm/sample/huawei_software_license.html" target-dir="src/cordova.plugin.huaweiswitchapn" />
-		
-		<source-file src="src/android/layout/actionbar_custom_view_done_discard.xml" target-dir="res/layout/actionbar_custom_view_done_discard.xml" />
-		<source-file src="src/android/layout/actionbar_discard_button.xml" target-dir="res/layout/actionbar_discard_button.xml" />
-		<source-file src="src/android/layout/actionbar_done_button.xml" target-dir="res/layout/actionbar_done_button.xml" />
-		<source-file src="src/android/layout/camera.xml" target-dir="res/layout/camera.xml" />
-		<source-file src="src/android/layout/drawer_list_item.xml" target-dir="res/layout/drawer_list_item.xml" />
-		<source-file src="src/android/layout/eula_layout.xml" target-dir="res/layout/eula_layout.xml" />
-		<source-file src="src/android/layout/file_row.xml" target-dir="res/layout/file_row.xml" />
-		<source-file src="src/android/layout/hc.xml" target-dir="res/layout/hc.xml" />
-		<source-file src="src/android/layout/license_layout.xml" target-dir="res/layout/license_layout.xml" />
-		<source-file src="src/android/layout/main.xml" target-dir="res/layout/main.xml" />
-		<source-file src="src/android/layout/multiselectorgrid.xml" target-dir="res/layout/multiselectorgrid.xml" />
-		
+				
+		<source-file src="src/android/layout/eula_layout.xml" target-dir="res/layout" />		
+		<source-file src="src/android/layout/license_layout.xml" target-dir="res/layout" />
+				
 		<lib-file src="src/android/lib/hwMdm.jar"/>
 	</platform>
 </plugin>
