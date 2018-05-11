@@ -23,7 +23,9 @@
 			</receiver>
 			<feature name="HuaWeiSwitchApnPlugin">
 				<param name="android-package" value="cordova.plugin.huaweiswitchapn" />
-			</feature>
+			</feature>			
+		</config-file>
+		<config-file parent="/manifest/application" target="AndroidManifest.xml">			
 			<uses-permission android:name="com.huawei.permission.sec.MDM" />
     			<uses-permission android:name="com.huawei.permission.sec.MDM_APN" />
 		</config-file>
