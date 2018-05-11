@@ -41,7 +41,7 @@
  * Huawei and other Huawei trademarks are trademarks of Huawei Technologies Co., Ltd.
  * All other trademarks and trade names mentioned in this document are the property of their respective holders.
  */
-package cordova.plugin.huaweiswitchapn;
+package com.chinavvv.jwtoa;
 
 import android.app.admin.DeviceAdminReceiver;
 import android.content.Context;
