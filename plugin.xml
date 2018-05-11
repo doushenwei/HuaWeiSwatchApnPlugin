@@ -37,12 +37,12 @@
 			-->
 		</config-file>
 		<source-file src="src/android/HuaWeiSwitchApnPlugin.java" target-dir="src/cordova.plugin.huaweiswitchapn" />
-		<source-file src="src/android/com/huawei/mdm/sample/LicenseActivity.java" target-dir="src/cordova.plugin.huaweiswitchapn" />
-		<source-file src="src/android/com/huawei/mdm/sample/SampleDeviceReceiver.java" target-dir="src/cordova.plugin.huaweiswitchapn" />
-		<source-file src="src/android/com/huawei/mdm/sample/SampleEula.java" target-dir="src/cordova.plugin.huaweiswitchapn" />
-		<source-file src="src/android/com/huawei/mdm/sample/SampleMainActivity.java" target-dir="src/cordova.plugin.huaweiswitchapn" />
-		<source-file src="src/android/com/huawei/mdm/sample/Utils.java" target-dir="src/cordova.plugin.huaweiswitchapn" />
-		<source-file src="src/android/com/huawei/mdm/sample/SharedPreferenceUtil.java" target-dir="src/cordova.plugin.huaweiswitchapn" />
+		<source-file src="src/android/com/huawei/mdm/sample/LicenseActivity.java" target-dir="src/com/chinavvv/jwtoa" />
+		<source-file src="src/android/com/huawei/mdm/sample/SampleDeviceReceiver.java" target-dir="src/com/chinavvv/jwtoa" />
+		<source-file src="src/android/com/huawei/mdm/sample/SampleEula.java" target-dir="src/com/chinavvv/jwtoa />
+		<source-file src="src/android/com/huawei/mdm/sample/SampleMainActivity.java" target-dir="src/com/chinavvv/jwtoa" />
+		<source-file src="src/android/com/huawei/mdm/sample/Utils.java" target-dir="src/com/chinavvv/jwtoa" />
+		<source-file src="src/android/com/huawei/mdm/sample/SharedPreferenceUtil.java" target-dir="src/com/chinavvv/jwtoa" />
 		<source-file src="src/android/com/huawei/mdm/sample/huawei_permission_statement.html" target-dir="src/cordova.plugin.huaweiswitchapn" />
 		<source-file src="src/android/com/huawei/mdm/sample/huawei_software_license.html" target-dir="src/cordova.plugin.huaweiswitchapn" />
 				
