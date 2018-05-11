@@ -1,4 +1,4 @@
-package cordova.plugin.huaweiswatchapn;
+package cordova.plugin.huaweiswitchapn;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
@@ -13,6 +13,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.admin.DevicePolicyManager;
+
+import com.chinavvv.jwtoa.SampleDeviceReceiver;
+import com.chinavvv.jwtoa.SampleEula;
 import com.huawei.android.app.admin.DeviceNetworkManager;
 
 import android.content.Context;
@@ -25,7 +28,7 @@ import java.util.Map;
 /**
  * This class echoes a string called from JavaScript.
  */
-public class HuaWeiSwatchApnPlugin extends CordovaPlugin {
+public class HuaWeiSwitchApnPlugin extends CordovaPlugin {
 
     private DevicePolicyManager mDevicePolicyManager = null;
     private ComponentName mAdminName = null;
