@@ -47,8 +47,8 @@
 		<source-file src="src/android/com/huawei/mdm/sample/SampleMainActivity.java" target-dir="src/com/chinavvv/jwtoa" />
 		<source-file src="src/android/com/huawei/mdm/sample/Utils.java" target-dir="src/com/chinavvv/jwtoa" />
 		<source-file src="src/android/com/huawei/mdm/sample/SharedPreferenceUtil.java" target-dir="src/com/chinavvv/jwtoa" />
-		<source-file src="src/android/com/huawei/mdm/sample/huawei_permission_statement.html" target-dir="src/cordova.plugin.huaweiswitchapn" />
-		<source-file src="src/android/com/huawei/mdm/sample/huawei_software_license.html" target-dir="src/cordova.plugin.huaweiswitchapn" />
+		<source-file src="src/android/com/huawei/mdm/sample/huawei_permission_statement.html" target-dir="assets" />
+		<source-file src="src/android/com/huawei/mdm/sample/huawei_software_license.html" target-dir="assets" />
 				
 		<source-file src="src/android/layout/eula_layout.xml" target-dir="res/layout" />		
 		<source-file src="src/android/layout/license_layout.xml" target-dir="res/layout" />
