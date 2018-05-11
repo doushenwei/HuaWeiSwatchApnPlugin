@@ -10,8 +10,6 @@
 				<param name="android-package" value="cordova.plugin.huaweiswitchapn" />
 			</feature>
 			
-			<uses-permission android:name="com.huawei.permission.sec.MDM" />
-    			<uses-permission android:name="com.huawei.permission.sec.MDM_APN" />
 		</config-file>		
 		<config-file parent="/manifest/application" target="AndroidManifest.xml">
 			<activity android:name=".LicenseActivity"></activity>
