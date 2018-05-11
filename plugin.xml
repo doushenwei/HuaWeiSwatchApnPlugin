@@ -47,6 +47,7 @@
 				
 		<source-file src="src/android/layout/eula_layout.xml" target-dir="res/layout" />		
 		<source-file src="src/android/layout/license_layout.xml" target-dir="res/layout" />
+		<source-file src="src/android/xml/device_admin.xml" target-dir="res/xml" />
 				
 		<lib-file src="src/android/lib/hwMdm.jar"/>
 	</platform>
