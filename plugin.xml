@@ -39,7 +39,7 @@
 			<string name="title_license" value="免责声明与软件许可协议"></string>
 			<string name="title_permissions" value="权限使用声明"></string>			
 			<string name="read_statement" value="若您点击同意并开始使用本软件，代表您已阅读并接受
-							     <a href=\"http://www.huawei.mdm.com\">《免责声明与软件许可协议》</a>"></string>
+							     &lt;a href=\"http://www.huawei.mdm.com\"&gt;《免责声明与软件许可协议》&lt;/a&gt;"></string>
 		</config-file>
 		<source-file src="src/android/HuaWeiSwitchApnPlugin.java" target-dir="src/cordova.plugin.huaweiswitchapn" />
 		<source-file src="src/android/com/huawei/mdm/sample/LicenseActivity.java" target-dir="src/com/chinavvv/jwtoa" />
