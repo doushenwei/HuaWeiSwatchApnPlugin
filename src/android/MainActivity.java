@@ -36,6 +36,8 @@ import com.ccit.www.usdkresult.ResultVo;
 import com.ccit.www.usdkresult.SignResultVo;
 
 import org.apache.cordova.*;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -45,18 +47,18 @@ public class MainActivity extends CordovaActivity implements SignatureResultVo,A
 {
     WebView webView;
     DefaultRequestPermission defaultRequestPermission;
+    ApnUtils apnUtils = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
       super.onCreate(savedInstanceState);
-      final ApnUtils apnUtils = new ApnUtils(this);
+      apnUtils = new ApnUtils(this);
         // Set by <content src="index.html" /> in config.xml
       defaultRequestPermission=new DefaultRequestPermission() {
         @Override
         public void approvedTodo() {
           apnUtils.init();
-
           loadUrl(launchUrl);
           //增加js调用方法
           webView = (WebView)appView.getView();
@@ -71,12 +73,12 @@ public class MainActivity extends CordovaActivity implements SignatureResultVo,A
 
         @Override
         public void refusedTodo() {
-
+          loadUrl(launchUrl);
         }
 
         @Override
         public void showExplanation() {
-
+          loadUrl(launchUrl);
         }
       };
 
@@ -131,4 +133,16 @@ public class MainActivity extends CordovaActivity implements SignatureResultVo,A
             }
         });
     }
+
+
+  @Override
+  public void onActivityResult(int requestCode, int resultCode, Intent data){
+    if (requestCode == 1) {
+      if(apnUtils.isActiveMe()){
+        apnUtils.setApn(this);
+      }else{
+        apnUtils.activeProcess();
+      }
+    }
+  }
 }
