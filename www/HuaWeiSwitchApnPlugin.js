@@ -9,3 +9,6 @@ exports.setInternet = function (arg0, success, error) {
 exports.initApnConfig = function (arg0, success, error) {
     exec(success, error, 'HuaWeiSwitchApnPlugin', 'initApnConfig', [arg0]);
 };
+exports.loginout = function (arg0, success, error) {
+    exec(success, error, 'HuaWeiSwitchApnPlugin', 'loginout', [arg0]);
+};
