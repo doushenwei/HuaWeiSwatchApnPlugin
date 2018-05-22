@@ -1,154 +1,132 @@
-package cordova.plugin.huaweiswitchapn;
-
-import org.apache.cordova.CordovaPlugin;
-import org.apache.cordova.CallbackContext;
+package com.chinavvv.jwtoa;
 
 import android.annotation.SuppressLint;
-import android.content.ComponentName;
-import android.content.Context;
 import android.app.Activity;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.admin.DevicePolicyManager;
-
-import com.chinavvv.apn.util.ApnUtility;
-import com.chinavvv.jwtoa.SampleDeviceReceiver;
-import com.chinavvv.jwtoa.SampleEula;
-import com.huawei.android.app.admin.DeviceNetworkManager;
-
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.telephony.TelephonyManager;
+import android.util.Log;
+
+import com.huawei.android.app.admin.DeviceNetworkManager;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * This class echoes a string called from JavaScript.
- */
-public class HuaWeiSwitchApnPlugin extends CordovaPlugin {
+public class ApnUtils {
 
-    private DevicePolicyManager mDevicePolicyManager = null;
-    private ComponentName mAdminName = null;
-    private ApnUtility apnUtility = null;
+  private Activity context;
+  private DevicePolicyManager mDevicePolicyManager = null;
+  private ComponentName mAdminName = null;
 
-    @Override
-    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        Activity context = cordova.getActivity();
-        mAdminName = new ComponentName(context, SampleDeviceReceiver.class);
-        mDevicePolicyManager = (DevicePolicyManager)
+  public ApnUtils(Activity context) {
+    this.context = context;
+    if(mAdminName == null){
+      mAdminName = new ComponentName(context, SampleDeviceReceiver.class);
+    }
+    if(mDevicePolicyManager == null){
+      mDevicePolicyManager = (DevicePolicyManager)
         context.getSystemService(Context.DEVICE_POLICY_SERVICE);
+    }
+  }
 
-        apnUtility = new ApnUtility(context);
-        if(action.equals("setApn")){//设置APN
-            if(isActiveMe()) {
-                apnUtility.closeWifi();
-                setApn(context);
-                return true;
-            }
-            return false;
-        }else if(action.equals("setInternet")){//设置互联网
-            if(isActiveMe()) {
-              setInternet(context);
-                return true;
-            }
-            return false;
-        }else if(action.equals("initApnConfig")){//初始化APN切换环境
+  public void init(){
+    new SampleEula(context, mDevicePolicyManager, mAdminName).show();
+  }
 
-            new SampleEula(context, mDevicePolicyManager, mAdminName).show();
-            return true;
-        }else if(action.equals("loginout")){//退出
-          setInternet(context);
+  /** SIM卡是中国移动 */
+  public static boolean isChinaMobile(Context context) {
+    String imsi = getSimOperator(context);
+    if (imsi == null) return false;
+    return imsi.startsWith("46000") || imsi.startsWith("46002") || imsi.startsWith("46007");
+  }
 
-          Intent intent = new Intent(Intent.ACTION_MAIN);
-          intent.addCategory(Intent.CATEGORY_HOME);
-          context.startActivity(intent);
+  /** SIM卡是中国联通 */
+  public static boolean isChinaUnicom(Context context) {
+    String imsi = getSimOperator(context);
+    if (imsi == null) return false;
+    return imsi.startsWith("46001");
+  }
+  @SuppressLint("MissingPermission")
+  private static String getSimOperator(Context context) {
+    TelephonyManager tm = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
+    return tm.getSubscriberId();
+  }
+
+  public void setApn(Activity context){
+    DeviceNetworkManager myDeviceNetworkManager = new DeviceNetworkManager();
+    Map<String, String> params = new HashMap<String, String>();
+    params.put("mcc","460");
+    // params.put("mnc","01");
+    //myDeviceNetworkManager.deleteApn(mAdminName,2565+"");
+    List<String> apns = myDeviceNetworkManager.queryApn(mAdminName,params);
+    boolean hasApn = false;
+    for(String id : apns){
+      Map<String,String> apn = myDeviceNetworkManager.getApnInfo(mAdminName,id);
+      String apnName = apn.get("apn");
+      if(apnName.indexOf("JCYJWT")!=-1){
+        hasApn = true;
+        myDeviceNetworkManager.setPreferApn(mAdminName,id);
+      }
+    }
+    if(!hasApn){
+      Map<String,String> apnInfo = new HashMap<String,String>();
+      apnInfo.put("mcc","460");
+      apnInfo.put("name","检务通");
+      //apnInfo.put("身份验证类型","PAP");
+      if(isChinaMobile(context)){
+        apnInfo.put("apn","JCYJWT.HA");
+        apnInfo.put("mnc","02");
+      }else{
+        apnInfo.put("apn","JCYJWT.HAAPN");
+        apnInfo.put("mnc","01");
+      }
+      myDeviceNetworkManager.addApn(mAdminName,apnInfo);
+      setApn(context);
+    }
+  }
+
+  public void setInternet(Activity context){
+    DeviceNetworkManager myDeviceNetworkManager = new DeviceNetworkManager();
+    Map<String, String> params = new HashMap<String, String>();
+    params.put("mcc","460");
+    // params.put("mnc","01");
+    List<String> apns = myDeviceNetworkManager.queryApn(mAdminName,params);
+    boolean hasApn = false;
+    for(String id : apns){
+      Map<String,String> apn = myDeviceNetworkManager.getApnInfo(mAdminName,id);
+      String apnName = apn.get("apn");
+
+      if(isChinaMobile(context)){
+        if(apnName.indexOf("3gnet") > -1){//联通网络
+          myDeviceNetworkManager.setPreferApn(mAdminName,id);
         }
-        return false;
-    }
-
-    /** SIM卡是中国移动 */
-    public static boolean isChinaMobile(Context context) {
-        String imsi = getSimOperator(context);
-        if (imsi == null) return false;
-        return imsi.startsWith("46000") || imsi.startsWith("46002") || imsi.startsWith("46007");
-    }
-
-    /** SIM卡是中国联通 */
-    public static boolean isChinaUnicom(Context context) {
-        String imsi = getSimOperator(context);
-        if (imsi == null) return false;
-        return imsi.startsWith("46001");
-    }
-    @SuppressLint("MissingPermission")
-    private static String getSimOperator(Context context) {
-        TelephonyManager tm = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
-        return tm.getSubscriberId();
-    }
-
-    private boolean isActiveMe() {
-        if(mDevicePolicyManager == null || !mDevicePolicyManager.isAdminActive(mAdminName)) {
-            return false;
-        } else {
-            return true;
+      }else{
+        if(apnName.indexOf("cmnet") > -1){//移动网络
+          myDeviceNetworkManager.setPreferApn(mAdminName,id);
         }
+      }
     }
+  }
 
-    private void setInternet(Activity context){
-      DeviceNetworkManager myDeviceNetworkManager = new DeviceNetworkManager();
-        Map<String, String> params = new HashMap<String, String>();
-        params.put("mcc","460");
-        // params.put("mnc","01");
-        List<String> apns = myDeviceNetworkManager.queryApn(mAdminName,params);
-        boolean hasApn = false;
-        for(String id : apns){
-            Map<String,String> apn = myDeviceNetworkManager.getApnInfo(mAdminName,id);
-            String apnName = apn.get("apn");
-
-            if(isChinaMobile(context)){
-                if(apnName.indexOf("3gnet") > -1){//联通网络
-                  myDeviceNetworkManager.setPreferApn(mAdminName,id);
-                }
-            }else{
-                if(apnName.indexOf("cmnet") > -1){//移动网络
-                  myDeviceNetworkManager.setPreferApn(mAdminName,id);
-                }
-            }
-        }
+  public boolean isActiveMe() {
+    if(mDevicePolicyManager == null || !mDevicePolicyManager.isAdminActive(mAdminName)) {
+      return false;
+    } else {
+      return true;
     }
+  }
 
-    private void setApn(Activity context){
-        DeviceNetworkManager myDeviceNetworkManager = new DeviceNetworkManager();
-        Map<String, String> params = new HashMap<String, String>();
-        params.put("mcc","460");
-        // params.put("mnc","01");
-        List<String> apns = myDeviceNetworkManager.queryApn(mAdminName,params);
-        boolean hasApn = false;
-        for(String id : apns){
-            Map<String,String> apn = myDeviceNetworkManager.getApnInfo(mAdminName,id);
-            String apnName = apn.get("apn");
-            if(apnName.indexOf("JCYJWT")!=-1){
-                hasApn = true;
-                myDeviceNetworkManager.setPreferApn(mAdminName,id);
-            }
-        }
-        if(!hasApn){
-            Map<String,String> apnInfo = new HashMap<String,String>();
-            apnInfo.put("mcc","460");
-            apnInfo.put("name","检务通");
-            if(isChinaMobile(context)){
-                apnInfo.put("apn","JCYJWT.HA");
-                apnInfo.put("mnc","07");
-            }else{
-                apnInfo.put("apn","JCYJWT.HAAPN");
-                apnInfo.put("mnc","01");
-            }
-            myDeviceNetworkManager.addApn(mAdminName,apnInfo);
-            setApn(context);
-        }
+  public void activeProcess() {
+    if (mDevicePolicyManager != null
+      && !mDevicePolicyManager.isAdminActive(mAdminName)) {
+      Intent intent = new Intent(
+        DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
+      intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, mAdminName);
+      context.startActivityForResult(intent, 1);
+      Log.d("JWT","activeProcess");
     }
+  }
 }
