@@ -35,7 +35,7 @@ public class HuaWeiSwitchApnPlugin extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        Activity context = null;
+        Activity context = cordova.getActivity();
 
         if(action.equals("setApn")){//设置APN
             if(isActiveMe()) {
