@@ -14,11 +14,13 @@ import org.json.JSONObject;
 
 import android.app.admin.DevicePolicyManager;
 
+import com.chinavvv.apn.util.ApnUtility;
 import com.chinavvv.jwtoa.SampleDeviceReceiver;
 import com.chinavvv.jwtoa.SampleEula;
 import com.huawei.android.app.admin.DeviceNetworkManager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.telephony.TelephonyManager;
 
 import java.util.HashMap;
@@ -32,13 +34,19 @@ public class HuaWeiSwitchApnPlugin extends CordovaPlugin {
 
     private DevicePolicyManager mDevicePolicyManager = null;
     private ComponentName mAdminName = null;
+    private ApnUtility apnUtility = null;
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         Activity context = cordova.getActivity();
+        mAdminName = new ComponentName(context, SampleDeviceReceiver.class);
+        mDevicePolicyManager = (DevicePolicyManager)
+        context.getSystemService(Context.DEVICE_POLICY_SERVICE);
 
+        apnUtility = new ApnUtility(context);
         if(action.equals("setApn")){//设置APN
             if(isActiveMe()) {
+                apnUtility.closeWifi();
                 setApn(context);
                 return true;
             }
@@ -50,12 +58,15 @@ public class HuaWeiSwitchApnPlugin extends CordovaPlugin {
             }
             return false;
         }else if(action.equals("initApnConfig")){//初始化APN切换环境
-            context = this.cordova.getActivity();
-            mAdminName = new ComponentName(context, SampleDeviceReceiver.class);
-            mDevicePolicyManager = (DevicePolicyManager)
-                    context.getSystemService(Context.DEVICE_POLICY_SERVICE);
+
             new SampleEula(context, mDevicePolicyManager, mAdminName).show();
             return true;
+        }else if(action.equals("loginout")){//退出
+          setInternet(context);
+
+          Intent intent = new Intent(Intent.ACTION_MAIN);
+          intent.addCategory(Intent.CATEGORY_HOME);
+          context.startActivity(intent);
         }
         return false;
     }
